@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Threading.Tasks;
 using System.IO;
 using Discord;
@@ -18,18 +19,19 @@ namespace MusicallityBot
         private static Thread musicThread = null;
     
 
-        //readonly string token = "OTgzMjc3NTQxNDQ2MDIxMTMx.GKGcSD.aRzwQeRtyWEaRKoaCODWsEhOYdXDYdD5wJ3xIw";
+        
         private DiscordSocketClient client;
         public static async Task Main()
         {
             StartNewClient();
         }
+
         private static async void StartNewClient()
         {
             var client = new DiscordSocketClient();
             client.MessageReceived += CommandHandler;
             client.Log += PrintLog;
-            await client.LoginAsync(TokenType.Bot, "OTgzMjc3NTQxNDQ2MDIxMTMx.GKGcSD.aRzwQeRtyWEaRKoaCODWsEhOYdXDYdD5wJ3xIw");
+            await client.LoginAsync(TokenType.Bot, Settings.token);
             await client.StartAsync();
             Console.ReadKey();
         }
